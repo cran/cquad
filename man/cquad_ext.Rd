@@ -32,15 +32,15 @@ Bartolucci, F. and Nigro, V. (2010), A dynamic model for binary panel data with 
 }
 
 \author{
-Francesco Bartolucci (University of Perugia), Claudia Pigini (University of Perugia)
+Francesco Bartolucci (University of Perugia), Claudia Pigini (University of Ancona "Politecnica delle Marche")
 }
 
 \examples{
-# example about PSID data
-data(PSID)
-PSID = PSID[1:2000,]   # only to speed up the example, to be removed in general
+# example based on simulated data
+data(data_sim)
+data_sim = data_sim[1:500,]   # to speed up the example, remove otherwise
+id = data_sim$id; yv = data_sim$y; X = cbind(X1=data_sim$X1,X2=data_sim$X2)
 # static model
-id = PSID[,1]; yv = PSID[,12]; X = PSID[,6:11]
 out = cquad_ext(id,yv,X)
 summary(out)
 }

@@ -17,5 +17,5 @@
 }
 
 \author{
-	Francesco Bartolucci (University of Perugia), Claudia Pigini (University of Perugia)
+	Francesco Bartolucci (University of Perugia), Claudia Pigini (University of Ancona "Politecnica delle Marche")
 }

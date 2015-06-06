@@ -24,7 +24,7 @@
 }
 
 \author{
-Francesco Bartolucci (University of Perugia), Claudia Pigini (University of Perugia)
+Francesco Bartolucci (University of Perugia), Claudia Pigini (University of Ancona "Politecnica delle Marche")
 }
 
 \examples{
@@ -37,7 +37,7 @@ eta1 = c(1,-1)                 # vector of parameters
 out = sim_panel_logit(id,al,X,eta1)
 y1 = out$yv
 
-# simulate data from the static dynamic model
+# simulate data from the dynamic logit model
 eta2 = c(1,-1,2)            # vector of parameters including state dependence
 out = sim_panel_logit(id,al,X,eta2,dyn=TRUE)
 y2 = out$yv

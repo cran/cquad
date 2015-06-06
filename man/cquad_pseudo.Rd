@@ -37,19 +37,16 @@ Bartolucci, F. and Nigro, V. (2012), Pseudo conditional maximum likelihood estim
 }
 
 \author{
-Francesco Bartolucci (University of Perugia), Claudia Pigini (University of Perugia)
+Francesco Bartolucci (University of Perugia), Claudia Pigini (University of Ancona "Politecnica delle Marche")
 }
 
 \examples{
 \dontrun{
-# example on PSID data with addition of time dummies
-data(PSID)
+# example based on simulated data
+data(data_sim)
+data_sim = data_sim[1:500,]   # to speed up the example, remove otherwise
+id = data_sim$id; yv = data_sim$y; X = cbind(X1=data_sim$X1,X2=data_sim$X2)
 # estimate dynmic logit model
-id = PSID[,1]; yv = PSID[,12]; X = PSID[,6:11]
-X[,5] = X[,5]/1000             # rescale income
-TD = rep(1,1446)\%x\%rbind(0,0,diag(5))
-colnames(TD) = c("y1989","y1990","y1991","y1992","y1993") 
-X = cbind(X,TD)  
 out = cquad_pseudo(id,yv,X)
 summary(out)
 }

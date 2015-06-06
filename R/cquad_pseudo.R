@@ -38,12 +38,13 @@ function(id, yv, X=NULL, be=NULL){
 	Tv = rep(0,n)
 	ind = id
 	for(i in 1:n) Tv[i] = sum(ind==label[i])
+	TT0 = max(Tv)
 	Tv = Tv-1
 	TT = max(Tv)
 	balanced = all(Tv==TT)
   	if(balanced){
-  		Y = t(matrix(yv,TT,n))
-  		if(k>0) XX = array(Xv,c(TT,n,k)) 
+  		Y = t(matrix(yv,TT0,n))
+  		if(k>0) XX = array(Xv,c(TT0,n,k)) 
   		ZZ = sq(TT); sZZ = rowSums(ZZ)
   	}
 #  starting values

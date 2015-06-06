@@ -1,1 +1,6 @@
 exportPattern("^[[:alpha:]]+")
+
+# S3methods
+S3method(print, cquad)
+S3method(summary, cquad)
+
