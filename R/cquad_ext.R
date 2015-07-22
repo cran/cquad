@@ -1,5 +1,4 @@
-cquad_ext <-
-function(id, yv, X=NULL, be=NULL, w = rep(1,n)){
+cquad_ext <- function(id, yv, X=NULL, be=NULL, w = rep(1,n)){
 
 # Fit a Conditional Logit model using CML (with time varying number of observation)
 # the first column of data is the increasing number of the unit with aggregated data
@@ -16,98 +15,38 @@ function(id, yv, X=NULL, be=NULL, w = rep(1,n)){
 	r = length(pid)
 	label = unique(pid)
 	n = length(label)
-	if(is.null(X)) k=0 else{X = as.matrix(X); k = ncol(X)}
-	c = max(yv)+1 # number of categories
-	if(k>0) Xv = X
-# chech variabiliy of the covariates
-	if(k>0) for(j in 1:k){
-		flag = TRUE
-		for(i in 1:n){
-			il = label[i] 
-			if(max(X[pid==il,j])-min(X[pid==il,j])>0) flag = FALSE
+# prepare covariate matrix
+	X1 = NULL
+	if(is.null(X)){
+		for(i in label){
+			Ti = sum(id==i)
+			tmp = c(rep(0,Ti-1),1)
+			X1 = rbind(X1,as.matrix(tmp))
 		}
-		if(flag) stop("at least one covariate without variability within unit")
-	}
-# variable names	
-	varnames = NULL
-	if(k>0){
-		if(is.null(colnames(X))) for(j in 1:k) varnames = c(varnames,paste("X",j,sep="")) 
-		else varnames = colnames(X)
-	}
-	varnames = c(varnames,"int",varnames,"y_lag")	
-#  starting values
-	be = rep(0,2*k+2)   
-# check for balanced data
-	Tv = rep(0,n)
-	ind = id
-	for(i in 1:n) Tv[i] = sum(ind==label[i])
-	balanced = all(Tv==max(Tv))
-	Tv = Tv-1
-  	if(balanced) cat("Balanced panel data\n") else cat("Unbalanced panel data\n") 
-# iterate until convergence    
-	Sc = matrix(0,n,1)
-	it = 0; lk = -Inf; lk0 = -Inf
-	cat("------------|-------------|-------------|\n")
-	cat("  iteration |      lk     |    lk-lko   |\n")
-	cat("------------|-------------|-------------|\n")
-	while(abs(lk-lk0)>10^-6 | it==0){
-		it = it+1; lk0 = lk
-		scv = matrix(0,n,2*k+2)
-		lk = 0; J = 0
-		for(cut_point in 1:(c-1)){
-			yd = 1*(yv>(cut_point-1))
-			for(i in 1:n){
-				if(Tv[i]>1){
-					il = label[i]
-					y_i = yd[pid==il]
-					y_i0 = y_i[1]; y_i = y_i[-1]
-					sui = sum(y_i)
-					if(sui>0 & sui<Tv[i]){
-						Z = sq(Tv[i],sui)
-						if(k==0) x_i = NULL else x_i = as.matrix(Xv[pid==il,])
-						if(k>0) x_i = as.matrix(x_i[-1,])
-						if(Tv[i]==2){
-							x_i = rbind(c(x_i[1,],0,rep(0,k),0),
-									    c(x_i[2,],1,x_i[Tv[i],],0),
-									    c(rep(0,k),0,rep(0,k),1))
-							Z = cbind(Z,y_i0*Z[,1]+Z[,1]*Z[,2])
-						}else{
-							x_i = rbind(cbind(x_i[-Tv[i],],rep(0,Tv[i]-1),matrix(0,Tv[i]-1,k),rep(0,Tv[i]-1)),
-									    c(x_i[Tv[i],], 1, x_i[Tv[i],], 0),
-									    c(rep(0,k), 0, rep(0,k), 1))             	
-               							Z = cbind(Z,y_i0*Z[,1]+rowSums(Z[,1:Tv[i]-1]*Z[,2:Tv[i]]))
-           				}
-           				xb = x_i%*%be
-           				den = exp(Z%*%xb)
-           				sden = sum(den)
-           				y_i = c(y_i,y_i0*y_i[1]+sum(y_i[1:Tv[i]-1]*y_i[2:Tv[i]]))
-           				pc_i = exp(y_i%*%xb)/sden
-       					Zt = t(Z)
-       					lk = lk+w[i]*log(pc_i)
-       					pp_i = as.vector(den/sden)
-       					e_i = Zt%*%pp_i
-       					scv[i,] = scv[i,]+w[i]*(t(y_i-e_i)%*%x_i)
-       					V_i = Zt%*%diag(pp_i)%*%Z-e_i%*%t(e_i)
-       					J = J-w[i]*(t(x_i)%*%V_i%*%x_i)
-       				}
-       			}
-       		}
+		colnames(X1) = "int"
+	}else{
+		X = as.matrix(X)
+		k = ncol(X)
+		if(is.null(colnames(X))) colnames(X) = paste("X",1:k,sep="")
+		X1 = matrix(0,nrow(X),2*k+1)
+		ind = 0
+		for(i in label){
+			Ti = sum(id==i)
+			Xi = matrix(X[id==i,],Ti)
+			ind = max(ind)+(1:Ti)
+			Tmp = rbind(matrix(0,Ti-1,k+1),c(1,Xi[Ti,]))
+			X1[ind,] = cbind(Xi,Tmp)
 		}
-		sc = colSums(scv)
-		iJ = solve(J)
-		be = be-iJ%*%sc
-   		cat(sprintf("%11g", c(it,lk,lk-lk0)), "\n", sep = " | ")
+		names = c(colnames(X),"int")
+		for(j in 1:k) names = c(names,paste("diff.",names[j],sep=""))
+		colnames(X1) = names
 	}
-	cat("------------|-------------|-------------|\n")
-	be = as.vector(be)
-	Va = iJ%*%(t(scv)%*%scv)%*%iJ
-	se = sqrt(diag(Va))
-   	lk = as.vector(lk)
-   	names(be) = varnames   	
-   	colnames(scv) = varnames
-   	rownames(J) = colnames(J) = varnames
-   	names(se) = varnames   		
-	out = list(lk=lk,be=be,scv=scv,J=J,se=se,Tv=Tv,call=match.call())
+	ind = which((apply(X1,2,max)-apply(X1,2,min))==0)
+	if(length(ind)>0) X1 = X1[,-ind]
+# use cquad_basic
+	out1 = cquad_basic(id,yv,X1,w=w,dyn=TRUE)
+# adjust output	
+	out = list(lk=out1$lk,be=out1$be,scv=out1$scv,J=out1$J,se=out1$se,se=out1$ser,Tv=out1$Tv,call=match.call())
 	class(out) = "cquad"	
 	return(out)
 

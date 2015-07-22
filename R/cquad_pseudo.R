@@ -52,6 +52,7 @@ function(id, yv, X=NULL, be=NULL){
 		be = 0
 		Q = rep(0.5,length(yv))
 	}else{
+		cat("First step estimation\n")
 		out = cquad_basic(id,yv,X)
 		be0 = be = out$be; scv0 = out$scv; J0 = out$J
 		Q = rep(0,length(yv))
@@ -84,9 +85,10 @@ function(id, yv, X=NULL, be=NULL){
 	Sc = matrix(0,n,1)
 	it = 0; lk = -Inf; lk0 = -Inf
 	zero1 = c(rep(0,k),1)
-	cat("------------|-------------|-------------|\n")
-	cat("  iteration |      lk     |    lk-lko   |\n")
-	cat("------------|-------------|-------------|\n")
+	cat("Second step estimation\n")
+	cat(" |--------------|--------------|--------------|\n")
+	cat(" |   iteration  |      lk      |    lk-lko    |\n")
+	cat(" |--------------|--------------|--------------|\n")
 	while(abs(lk-lk0)>10^-6 | it==0){
 		it = it+1; lk0 = lk
 		scv = matrix(0,n,k+1)
@@ -129,9 +131,9 @@ function(id, yv, X=NULL, be=NULL){
     	mdbe = max(abs(dbe))
    		if(mdbe>0.5) dbe = dbe/mdbe*0.5
 		be = be+dbe
-   		cat(sprintf("%11g", c(it,lk,lk-lk0)), "\n", sep = " | ")
+   		cat("",sprintf("%12g", c(it,lk,lk-lk0)), "\n", sep = " | ")
 	}
-	cat("------------|-------------|-------------|\n")
+	cat(" |--------------|--------------|--------------|\n")
 	be = as.vector(be)
 	Va = iJ%*%(t(scv)%*%scv)%*%t(iJ)
 	if(k==0){

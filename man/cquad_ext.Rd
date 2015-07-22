@@ -24,6 +24,7 @@
 	\item{scv}{matrix of individual scores}
 	\item{J}{Hessian of the log-likelihood function}
 	\item{se}{standard errors}
+	\item{ser}{robust standard errors}	
 	\item{Tv}{number of time occasions for each unit}
 }
 	

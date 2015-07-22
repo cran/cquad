@@ -7,7 +7,7 @@ function(object, ...){
 	cat("\nCall:\n")
     print(out$call)
     cat("\nLog-likelihood:\n")
-    print(round(out$lk,2))
+    cat(out$lk,"\n")
     tstat = out$be/out$se
     pv = 2*(1-pnorm(abs(tstat)))
     Tab = cbind("est."=out$be,"s.e."=out$se,"t-stat"=tstat,"p-value"=pv)

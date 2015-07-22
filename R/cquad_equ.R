@@ -55,9 +55,9 @@ function(id, yv, X=NULL, be=NULL, w = rep(1,n)){
 	Sc = matrix(0,n,1)
 	it = 0; lk = -Inf; lk0 = -Inf
 	zero1 = c(rep(0,k),1)
-	cat("------------|-------------|-------------|\n")
-	cat("  iteration |      lk     |    lk-lko   |\n")
-	cat("------------|-------------|-------------|\n")
+	cat(" |--------------|--------------|--------------|\n")
+	cat(" |   iteration  |      lk      |    lk-lko    |\n")
+	cat(" |--------------|--------------|--------------|\n")
 	while(abs(lk-lk0)>10^-6 | it==0){
 		it = it+1; lk0 = lk
 		scv = matrix(0,n,k+1)
@@ -95,20 +95,28 @@ function(id, yv, X=NULL, be=NULL, w = rep(1,n)){
 			}
 		}
 		sc = colSums(scv)
-		iJ = solve(J)
+    	iJ = try(solve(J),silent=TRUE)
+    	if(inherits(iJ,"try-error")){
+    		iJ = ginv(J)
+    		warning("Inversion problems of the information matrix")
+    	}
 		be = be-iJ%*%sc
-		cat(sprintf("%11g", c(it,lk,lk-lk0)), "\n", sep = " | ")
+		cat("",sprintf("%12g", c(it,lk,lk-lk0)), "\n", sep = " | ")
 	}
-	cat("------------|-------------|-------------|\n")
+	cat(" |--------------|--------------|--------------|\n")
 	be = as.vector(be)
-	Va = iJ%*%(t(scv)%*%scv)%*%iJ
-	se = sqrt(diag(Va))
+	Va = -iJ
+	Var = iJ%*%(t(scv)%*%scv)%*%iJ
+   	se = sqrt(abs(diag(Va)))
+   	if(any(diag(Va)<0)) warning("Negative elements in asymptotic variance-covariance matrix")
+   	ser = sqrt(abs(diag(Var)))
+   	if(any(diag(Var)<0)) warning("Negative elements in robust variance-covariance matrix")
    	lk = as.vector(lk)
    	names(be) = varnames   	
    	colnames(scv) = varnames
    	rownames(J) = colnames(J) = varnames
    	names(se) = varnames   			
-	out = list(lk=lk,be=be,scv=scv,J=J,se=se,Tv=Tv,call=match.call())
+	out = list(lk=lk,be=be,scv=scv,J=J,se=se,ser=ser,Tv=Tv,call=match.call())
 	class(out) = "cquad"		
 	return(out)
 	

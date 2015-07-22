@@ -1,5 +1,9 @@
 exportPattern("^[[:alpha:]]+")
 
+# Imported function
+import("stats")
+import("MASS")
+
 # S3methods
 S3method(print, cquad)
 S3method(summary, cquad)
