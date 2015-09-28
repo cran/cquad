@@ -46,8 +46,9 @@ cquad_ext <- function(id, yv, X=NULL, be=NULL, w = rep(1,n)){
 # use cquad_basic
 	out1 = cquad_basic(id,yv,X1,w=w,dyn=TRUE)
 # adjust output	
-	out = list(lk=out1$lk,be=out1$be,scv=out1$scv,J=out1$J,se=out1$se,se=out1$ser,Tv=out1$Tv,call=match.call())
-	class(out) = "cquad"	
+	out = list(formula=formula,lk=out1$lk,coefficients=out1$coefficients,vcov=out1$vcov,scv=out1$scv,J=out1$J,se=out1$se,
+	ser=out1$ser,Tv=out1$Tv,call=match.call())
+	class(out) = c("cquad","panelmodel")	
 	return(out)
 
 }

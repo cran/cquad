@@ -2,8 +2,6 @@
 
 \alias{cquad-package}
 
-\alias{cquad}
-
 \docType{package}
 
 \title{Conditional Maximum Likelihood for Quadratic Exponential Models for Binary Panel Data}
@@ -15,8 +13,8 @@ Estimation, based on conditional maximum likelihood, of the quadratic exponentia
 \tabular{ll}{
 Package: \tab cquad\cr
 Type: \tab Package\cr
-Version: \tab 1.2\cr
-Date: \tab 2015-07-22\cr
+Version: \tab 1.3\cr
+Date: \tab 2015-09-09\cr
 License: \tab GPL (>= 2)\cr
 }
 
@@ -43,9 +41,8 @@ Cox, D. R. (1972), The Analysis of multivariate binary data, \emph{Applied Stati
 # example based on simulated data
 data(data_sim)
 data_sim = data_sim[1:500,]   # to speed up the example, remove otherwise
-id = data_sim$id; yv = data_sim$y; X = cbind(X1=data_sim$X1,X2=data_sim$X2)
 # static model
-out1 = cquad_basic(id,yv,X)
+out1 = cquad(y~X1+X2,data_sim,100)
 # dynamic model
-out2 = cquad_basic(id,yv,X,dyn=TRUE)
+out2 = cquad(y~X1+X2,data_sim,100,dyn=TRUE)
 }

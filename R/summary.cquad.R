@@ -8,9 +8,9 @@ function(object, ...){
     print(out$call)
     cat("\nLog-likelihood:\n")
     cat(out$lk,"\n")
-    tstat = out$be/out$se
+    tstat = out$coefficients/out$se
     pv = 2*(1-pnorm(abs(tstat)))
-    Tab = cbind("est."=out$be,"s.e."=out$se,"t-stat"=tstat,"p-value"=pv)
+    Tab = cbind("est."=out$coefficients,"s.e."=out$se,"t-stat"=tstat,"p-value"=pv)
     print(Tab)
     cat("\n")
     

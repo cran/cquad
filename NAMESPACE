@@ -3,6 +3,7 @@ exportPattern("^[[:alpha:]]+")
 # Imported function
 import("stats")
 import("MASS")
+import("plm")
 
 # S3methods
 S3method(print, cquad)

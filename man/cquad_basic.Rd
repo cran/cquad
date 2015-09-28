@@ -20,8 +20,10 @@
 }
 
 \value{
+	\item{formula}{formula defining the model}
 	\item{lk}{conditional log-likelihood value}
-	\item{be}{estimate of the regression parameters (including for the lag-response)}
+	\item{coefficients}{estimate of the regression parameters (including for the lag-response)}
+	\item{vcov}{asymptotic variance-covariance matrix for the parameter estimates}
 	\item{scv}{matrix of individual scores}
 	\item{J}{Hessian of the log-likelihood function}
 	\item{se}{standard errors}

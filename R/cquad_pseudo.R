@@ -54,7 +54,7 @@ function(id, yv, X=NULL, be=NULL){
 	}else{
 		cat("First step estimation\n")
 		out = cquad_basic(id,yv,X)
-		be0 = be = out$be; scv0 = out$scv; J0 = out$J
+		be0 = be = out$coefficients; scv0 = out$scv; J0 = out$J
 		Q = rep(0,length(yv))
 		for(i in 1:n){
 			il = label[i]
@@ -209,13 +209,14 @@ function(id, yv, X=NULL, be=NULL){
 	se = sqrt(diag(Va))
 	se2 = sqrt(diag(Va2))
    	lk = as.vector(lk)
-   	names(be) = varnames   	
+   	names(be) = varnames
+   	colnames(Va) = rownames(Va) = varnames   	
    	colnames(scv) = varnames
    	rownames(J) = colnames(J) = varnames
    	names(se) = varnames   	
    	names(se2) = varnames	
-	out = list(lk=lk,be=be,scv=scv,J=J,se=se,se2=se2,Tv=Tv,call=match.call())
-	class(out) = "cquad"
+	out = list(formula=formula,lk=lk,coefficients=be,vcov=Va,scv=scv,J=J,se=se,ser=se2,Tv=Tv,call=match.call())
+	class(out) = c("cquad","panelmodel")
 	return(out)
 
 }

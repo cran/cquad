@@ -125,12 +125,13 @@ function(id, yv, X=NULL, be=NULL, w = rep(1,n), dyn=FALSE){
    	ser = sqrt(abs(diag(Var)))
    	if(any(diag(Var)<0)) warning("Negative elements in robust variance-covariance matrix")
    	lk = as.vector(lk)
-   	names(be) = varnames   	
+   	names(be) = varnames
+   	colnames(Va) = rownames(Va) = varnames   	
    	colnames(scv) = varnames
    	rownames(J) = colnames(J) = varnames
    	names(se) = varnames   	
-   	out = list(lk=lk,be=be,scv=scv,J=J,se=se,ser=ser,Tv=Tv,call=match.call())
-	class(out) = "cquad"
+   	out = list(formula=formula,lk=lk,coefficients=be,vcov=Va,scv=scv,J=J,se=se,ser=ser,Tv=Tv,call=match.call())
+	class(out) = c("cquad","panelmodel")
    	return(out)
 
 }
