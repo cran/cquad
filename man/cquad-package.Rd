@@ -13,8 +13,8 @@ Estimation, based on conditional maximum likelihood, of the quadratic exponentia
 \tabular{ll}{
 Package: \tab cquad\cr
 Type: \tab Package\cr
-Version: \tab 1.3\cr
-Date: \tab 2015-09-09\cr
+Version: \tab 1.4\cr
+Date: \tab 2015-06-05\cr
 License: \tab GPL (>= 2)\cr
 }
 
@@ -29,6 +29,8 @@ Maintainer: Francesco Bartolucci <francesco.bartolucci@unipg.it>
 Bartolucci, F. and Nigro, V. (2010), A dynamic model for binary panel data with unobserved heterogeneity admitting a root-n consistent conditional estimator, \emph{Econometrica}, \bold{78}, 719-733.
 
 Bartolucci, F. and Nigro, V. (2012). Pseudo conditional maximum likelihood estimation of the dynamic logit model for binary panel data, \emph{Journal of Econometrics}, \bold{170}, 102-116.
+
+Bartolucci, F. and Pigini, C. (2017). cquad: An R and Stata package for conditional maximum likelihood estimation of dynamic binary panel data models, \emph{Journal of Statistical Software}, \bold{78}, 1-26, doi:10.18637/jss.v078.i07.
 
 Bartolucci, F., Nigro, V. and Pigini, C. (2013). Testing for state dependence in binary panel data with individual covariates, Econometric Reviews, in press.
 

@@ -1,4 +1,4 @@
-57ed439d3f36a0a98dff37d221c4d099 *DESCRIPTION
+ce82814e3507dfd6914eaba94642d444 *DESCRIPTION
 248bd015ca8847cea8b57f20551b28da *NAMESPACE
 c6537b8a177d6f896180c90fcf190b10 *R/cquad.R
 1403dd032ec1e71098e69eb3fcd2219a *R/cquad_basic.R
@@ -10,7 +10,8 @@ daefe1e98fcbaee11f6c1f04f3d0f2f7 *R/sim_panel_logit.R
 b63e0b20faf2318f69faa16c91d56682 *R/sq.R
 631990aa8e469eec8ec5c66ec4ff577a *R/summary.cquad.R
 3f0f2696b4a381244be2ebdfe736a6c5 *data/data_sim.RData
-45d7d75e3cce628386177941c861b501 *man/cquad-package.Rd
+76e3ffd7ad1c70db2871c88d95f4db7a *inst/CITATION
+b03212926cc5672bd841d8325c4bddbd *man/cquad-package.Rd
 e89a42da6223195d6c468c572b7c43a3 *man/cquad.Rd
 00c3686d034709c66d55ba004695b8b0 *man/cquad_basic.Rd
 d3fabaf11e2926c8d4c66564ddec5eb1 *man/cquad_equ.Rd

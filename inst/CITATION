@@ -1,0 +1,23 @@
+bibentry(bibtype = "Article",
+  title        = "{cquad}: An {R} and {Stata} Package for Conditional Maximum Likelihood Estimation of Dynamic Binary Panel Data Models",
+  author       = c(person(given = "Francesco",
+                          family = "Bartolucci",
+                          email = "francesco.bartolucci@unipg.it"),
+                   person(given = "Claudia",
+                          family = "Pigini",
+                          email = "c.pigini@univpm.it")),
+  journal      = "Journal of Statistical Software",
+  year         = "2017",
+  volume       = "78",
+  number       = "7",
+  pages        = "1--26",
+  doi          = "10.18637/jss.v078.i07",
+
+  header       = "To cite cquad in publications use:",
+  textVersion  =
+  paste("Francesco Bartolucci, Claudia Pigini (2017).",
+        "cquad: An R and Stata Package for Conditional Maximum Likelihood Estimation of Dynamic Binary Panel Data Models.",
+        "Journal of Statistical Software, 78(7), 1-26.",
+        "doi:10.18637/jss.v078.i07")
+)
+
