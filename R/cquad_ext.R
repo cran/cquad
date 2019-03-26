@@ -1,4 +1,5 @@
-cquad_ext <- function(id, yv, X=NULL, be=NULL, w = rep(1,n)){
+cquad_ext <- function(id, yv, X=NULL, be=NULL, w = rep(1,n),Ttol=10){
+
 
 # Fit a Conditional Logit model using CML (with time varying number of observation)
 # the first column of data is the increasing number of the unit with aggregated data
@@ -43,8 +44,9 @@ cquad_ext <- function(id, yv, X=NULL, be=NULL, w = rep(1,n)){
 	}
 	ind = which((apply(X1,2,max)-apply(X1,2,min))==0)
 	if(length(ind)>0) X1 = X1[,-ind]
-# use cquad_basic
-	out1 = cquad_basic(id,yv,X1,w=w,dyn=TRUE)
+                                        # use cquad_basic
+    #browser()
+	out1 = cquad_basic(id,yv,X1,w=w,dyn=TRUE,Ttol=Ttol)
 # adjust output	
 	out = list(formula=formula,lk=out1$lk,coefficients=out1$coefficients,vcov=out1$vcov,scv=out1$scv,J=out1$J,se=out1$se,
 	ser=out1$ser,Tv=out1$Tv,call=match.call())

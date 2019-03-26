@@ -1,5 +1,5 @@
 cquad_equ <-
-function(id, yv, X=NULL, be=NULL, w = rep(1,n)){
+function(id, yv, X=NULL, be=NULL, w = rep(1,n),Ttol=10){
 
 # SIMPLIFIED VERSION WITH OF THE ECONOMETRIC MODEL
 #
@@ -66,12 +66,14 @@ function(id, yv, X=NULL, be=NULL, w = rep(1,n)){
 			yd = 1*(yv>(cut_point-1))
 			if(balanced) Yd = 1*(Y>(cut_point-1))
 			for(i in 1:n){
-				if(Tv[i]>1){
+                            if(Tv[i]>1){
+                                largeT = (Tv[i]>Ttol)
 					il = label[i]
 					if(balanced) y_i = Yd[i,] else y_i = yd[pid==il]
 					y_i0 = y_i[1]; y_i = y_i[-1]
 					sui = sum(y_i)
 					if(sui>0 & sui<Tv[i]){
+                                            if(!largeT){
 						Z = sq(Tv[i],sui)
 						if(k>0) if(balanced) x_i = as.matrix(XX[,i,]) else x_i = as.matrix(Xv[pid==il,])
 						if(k>0) x_i = rbind(cbind(x_i[-1,],0),zero1)
@@ -90,7 +92,26 @@ function(id, yv, X=NULL, be=NULL, w = rep(1,n)){
 						scv[i,] = scv[i,]+w[i]*(t(y_i-e_i)%*%x_i)
 						V_i = Zt%*%diag(pp_i)%*%Z-e_i%*%t(e_i)
 						J = J-w[i]*(t(x_i)%*%V_i%*%x_i)
-					}
+                                            }else{
+                                                if(k>0) if(balanced) x_i = as.matrix(XX[,i,]) else x_i = as.matrix(Xv[pid==il,])
+						if(k>0) x_i = rbind(cbind(x_i[-1,],0),zero1)
+						else x_i = as.matrix(c(rep(0,Tv[i]),1))
+                                                
+                                                xb = x_i%*%be
+
+                                                out = quasi_sym_equ(xb,sui,y0=y_i0)
+                                                y_i = c(y_i,sum(y_i0==y_i[1])+sum(y_i[1:Tv[i]-1]==y_i[2:Tv[i]]))  #modified
+						pc_i = exp(y_i%*%xb)/out$f
+                                                lk = lk+w[i]*log(pc_i)
+
+                                                scv[i,] = scv[i,]+w[i]*(t(y_i-out$dl1)%*%x_i)
+
+                                                J = J-w[i]*(t(x_i)%*%out$Dl2%*%x_i)
+
+                                               
+                                            }
+                                        }
+                                
 				}
 			}
 		}

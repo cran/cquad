@@ -7,7 +7,8 @@
 
 \description{Fit by conditional maximum likelihood a simplified version of the model for binary logitudinal data proposed by Bartolucci & Nigro (2010); see also Cox (1972).}
 
-\usage{cquad_basic(id, yv, X = NULL, be = NULL, w = rep(1, n), dyn = FALSE)}
+\usage{cquad_basic(id, yv, X = NULL, be = NULL, w = rep(1, n), dyn =
+FALSE, Ttol=10)}
 %- maybe also 'usage' for other objects documented here.
 
 \arguments{
@@ -17,6 +18,7 @@
   \item{be}{intial vector of parameters (optional)}
   \item{w}{vector of weights (optional)}
   \item{dyn}{TRUE if in the dynamic version; FALSE for the static version (by default)}
+    \item{Ttol}{Treshold individual observations that activates the recursive algorithm (default=10)}
 }
 
 \value{
@@ -36,7 +38,9 @@ Bartolucci, F. and Nigro, V. (2010), A dynamic model for binary panel data with 
 Cox, D. R. (1972), The Analysis of multivariate binary data, \emph{Applied Statistics}, \bold{21}, 113-120.
 }
 \author{
-Francesco Bartolucci (University of Perugia), Claudia Pigini (University of Ancona "Politecnica delle Marche")
+Francesco Bartolucci (University of Perugia), Claudia Pigini (University
+of Ancona "Politecnica delle Marche"), Francesco Valentini (University
+of Ancona "Politecnica delle Marche")
 }
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
@@ -47,10 +51,10 @@ data(data_sim)
 data_sim = data_sim[1:500,]   # to speed up the example, remove otherwise
 id = data_sim$id; yv = data_sim$y; X = cbind(X1=data_sim$X1,X2=data_sim$X2)
 # static model
-out1 = cquad_basic(id,yv,X)
+out1 = cquad_basic(id,yv,X,Ttol=10)
 summary(out1)
 # dynamic model
-out2 = cquad_basic(id,yv,X,dyn=TRUE)
+out2 = cquad_basic(id,yv,X,dyn=TRUE,Ttol=10)
 summary(out2)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

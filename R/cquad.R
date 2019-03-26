@@ -1,4 +1,5 @@
-cquad <- function(formula, data, index=NULL, model=c("basic","equal","extended","pseudo"), w=rep(1,n), dyn=FALSE){
+cquad <- function(formula, data, index=NULL, model=c("basic","equal","extended","pseudo"),
+                  w=rep(1,n), dyn=FALSE, Ttol=10){
 
 # INTERFACE FOR CQUAD ACCEPTING A FORMULA IN INPUT
 #
@@ -19,12 +20,13 @@ cquad <- function(formula, data, index=NULL, model=c("basic","equal","extended",
 	id = attr(data,"index")[,1] 
 	n = length(unique(id))
 # call model
-	if(model=="basic") out = cquad_basic(id,yv,X,w=w,dyn=dyn)
-	if(model=="equal") out = cquad_equ(id,yv,X,w=w)
-	if(model=="extended") out = cquad_ext(id,yv,X,w=w)
-	if(model=="pseudo") out = cquad_pseudo(id,yv,X)
-	out$formula = formula
-# return output
-	out
+    if(model=="basic") out = cquad_basic(id,yv,X,w=w,dyn=dyn,Ttol=Ttol)
+    if(model=="equal") out = cquad_equ(id,yv,X,w=w,Ttol=Ttol)
+    if(model=="extended") out = cquad_ext(id,yv,X,w=w,Ttol=Ttol)
+    if(model=="pseudo") out = cquad_pseudo(id,yv,X,Ttol=Ttol)		
 
+    out$formula = formula
+                                        # return output
+    out
+    
 }

@@ -8,7 +8,7 @@
 \description{Estimate the dynamic logit model for binary logitudinal data by the pseudo conditional maximum likelihood method proposed by Bartolucci & Nigro (2012).}
 
 \usage{
-cquad_pseudo(id, yv, X = NULL, be = NULL)
+cquad_pseudo(id, yv, X = NULL, be = NULL, w = rep(1,n), Ttol=10)
 }
 %- maybe also 'usage' for other objects documented here.
 
@@ -17,6 +17,8 @@ cquad_pseudo(id, yv, X = NULL, be = NULL)
   \item{yv}{corresponding vector of response variables}
   \item{X}{corresponding matrix of covariates (optional)}
   \item{be}{intial vector of parameters (optional)}
+  \item{w}{vector of weights (optional)}
+  \item{Ttol}{Treshold individual observations that activates the recursive algorithm (default=10)}
 }
 
 
@@ -39,7 +41,8 @@ Bartolucci, F. and Nigro, V. (2012), Pseudo conditional maximum likelihood estim
 }
 
 \author{
-Francesco Bartolucci (University of Perugia), Claudia Pigini (University of Ancona "Politecnica delle Marche")
+  Francesco Bartolucci (University of Perugia), Claudia Pigini (University of Ancona "Politecnica delle Marche"), Francesco Valentini (University
+  of Ancona "Politecnica delle Marche")
 }
 
 \examples{
@@ -49,7 +52,7 @@ data(data_sim)
 data_sim = data_sim[1:500,]   # to speed up the example, remove otherwise
 id = data_sim$id; yv = data_sim$y; X = cbind(X1=data_sim$X1,X2=data_sim$X2)
 # estimate dynmic logit model
-out = cquad_pseudo(id,yv,X)
+out = cquad_pseudo(id,yv,X, Ttol=10)
 summary(out)
 }
 }

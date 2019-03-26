@@ -24,7 +24,8 @@
 }
 
 \author{
-Francesco Bartolucci (University of Perugia), Claudia Pigini (University of Ancona "Politecnica delle Marche")
+Francesco Bartolucci (University of Perugia), Claudia Pigini (University
+of Ancona "Politecnica delle Marche")
 }
 
 \examples{
