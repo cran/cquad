@@ -4,7 +4,7 @@ quasi_sym_equ <- function(eta,s,y0=NULL){
 # and total equal to s
 # if dyn then the last element of is gamma, in this case y0 must be precised
 # preliminaries	
-                                        #browser()
+
     TT = length(eta)
     
     ga = eta[TT]

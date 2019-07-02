@@ -4,7 +4,6 @@ quasi_sym_pseudo <- function(eta,qi,s,y0=NULL){
                                         # and total equal to s
                                         # if dyn then the last element of is gamma, in this case y0 must be precised
                                         # preliminaries
-                                        #browser()
     TT = length(eta)
     
     ga = eta[TT]
@@ -49,17 +48,10 @@ quasi_sym_pseudo <- function(eta,qi,s,y0=NULL){
                   E0 = cbind(E00+E10*exp(nu[t]),0)
                   E0[TT+1,-(t+1)] = E0[TT+1,-(t+1)] + g10*exp(nu[t])*(qi[t]) 
               
-                 # alternative with for               
-                  #E0 = matrix(0,TT+1,t+1)
-                 ## for(h in 1:t){
-                 ## E0[,h] = E00[,h]+E10[,h]*exp(nu[t])
-                 ## E0[TT+1,h] = E0[TT+1,h]+g10[h]*exp(nu[t])*(qi[t])
-                 ## }
                  
                  F0 = array(0,c(TT+1,TT+1,t+1))
                  for(h in 1:t){
                  F0[,,h] = F00[,,h]+F10[,,h]*exp(nu[t])
-                 # F0[,t,h] = F0[,t,h]+E10[t,h]*exp(nu[t])
                  F0[,TT+1,h] = F0[,TT+1,h]+E10[,h]*exp(nu[t])*qi[t]
                  F0[TT+1,,h] = F0[TT+1,,h]+E10[,h]*exp(nu[t])*qi[t]
                  F0[TT+1,TT+1,h] = F0[TT+1,TT+1,h]+g10[h]*exp(nu[t])*qi[t]^2
@@ -72,13 +64,6 @@ quasi_sym_pseudo <- function(eta,qi,s,y0=NULL){
               E1[t,-1] = E1[t,-1] + g00*exp(eta[t]) + g10*exp(eta[t]+ga+nu[t])
               E1[TT+1,-1] = E1[TT+1,-1] + g10*exp(eta[t]+ga+nu[t])*(1+qi[t])
               
-              ## E1 = matrix(0,TT+1,t+1)
-              ## for(h in 1:t){
-              ##     E1[,h+1] = E00[,h]*exp(eta[t])+E10[,h]*exp(eta[t]+ga+nu[t]) 
-              ##     E1[t,h+1] = E1[t,h+1]+g00[h]*exp(eta[t])+g10[h]*exp(eta[t]+ga+nu[t])
-                  
-              ##     E1[TT+1,h+1] = E1[TT+1,h+1]+g10[h]*exp(eta[t]+ga+nu[t])*(1+qi[t])
-              ## }
               
               
               F1 =  array(0,c(TT+1,TT+1,t+1))
@@ -114,7 +99,7 @@ quasi_sym_pseudo <- function(eta,qi,s,y0=NULL){
              
     
     
-    #browser() # output
+                                        # output
     
     f = g0+g1; f = f[s+1]
     D1 = E0+E1; d1 = D1[,s+1]
