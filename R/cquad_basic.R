@@ -16,10 +16,23 @@ cquad_basic <-
         
                                         # preliminaries
 	if(is.null(X) & !dyn) stop("nothing to estimate")
-	pid = id
+
+        
+        ## Sort data by id ###
+        input_data = cbind(id,yv,X)
+        sorted_data = input_data[order(input_data[,1],decreasing=FALSE),]
+        
+        id = sorted_data[,1]
+        yv = sorted_data[,2]
+        X = sorted_data[,-(1:2)]
+        #######################
+
+        
+        pid = id
 	r = length(pid)
 	label = unique(pid)
 	n = length(label)
+
 	if(is.null(X)) k=0 else{X = as.matrix(X); k = ncol(X)}
 	c = max(yv)+1 # number of categories
 	if(k>0) Xv = X

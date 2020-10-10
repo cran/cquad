@@ -1,10 +1,10 @@
-ba8887387737f14f24c7a00bf8ae7399 *DESCRIPTION
+bebac5f3b99efba2f24d4a21d90fe88a *DESCRIPTION
 248bd015ca8847cea8b57f20551b28da *NAMESPACE
 44ecf4036cae7134c78679f1f7e212f2 *R/cquad.R
-834159e6d54806117ca741805d32005a *R/cquad_basic.R
-26d164d72d5d971ec52b73660da5e366 *R/cquad_equ.R
-266604eb67b6ffe54f4ec664450a71d1 *R/cquad_ext.R
-b5a18c17cb752f2e9a0cbf3e815312f8 *R/cquad_pseudo.R
+02d594a33696a21d87f2be9c349e254f *R/cquad_basic.R
+bbf15ec6c60dc527d188225c5528d270 *R/cquad_equ.R
+f8ff172a2ee3a748e8580f9dd1da010a *R/cquad_ext.R
+0bd391bc3f86fa2e35175933d69cdfd1 *R/cquad_pseudo.R
 b75b774e2dfd569009e3043d827442e5 *R/print.cquad.R
 b606048e8a84fa86280de391d68c7345 *R/quasi_sym.R
 c67abbf9cfa8b2af4ded9bfd3ac3bb83 *R/quasi_sym_equ.R

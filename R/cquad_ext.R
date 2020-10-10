@@ -11,21 +11,32 @@ cquad_ext <- function(id, yv, X=NULL, be=NULL, w = rep(1,n),Ttol=10){
 # se      : vector of estimated standard errors of dimension k
 # lk      : log-likelihood value at convergence
 
-# preliminaries
+                                        # preliminaries
+    
+    ## Sort data by id ###
+    input_data = cbind(id,yv,X)
+    sorted_data = input_data[order(input_data[,1],decreasing=FALSE),]
+    
+    id = sorted_data[,1]
+    yv = sorted_data[,2]
+    X =  sorted_data[,-(1:2)]
+    #######################
+
+    
     pid = id
     r = length(pid)
     label = unique(pid)
     n = length(label)
-    k = ncol(X)
+    if(is.null(X)) k=0 else{X = as.matrix(X); k = ncol(X)}
 # prepare covariate matrix
     X1 = NULL
     if(k==0){
-		for(i in label){
-                    Ti = sum(id==i)
-                    tmp = c(rep(0,Ti-1),1)
-                    X1 = rbind(X1,as.matrix(tmp))
-		}
-		colnames(X1) = "int"
+        for(i in label){
+            Ti = sum(id==i)
+            tmp = c(rep(0,Ti-1),1)
+            X1 = rbind(X1,as.matrix(tmp))
+        }
+        colnames(X1) = "int"
     }else{
         X = as.matrix(X)
         if(is.null(colnames(X))) colnames(X) = paste("X",1:k,sep="")

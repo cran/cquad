@@ -12,8 +12,19 @@ function(id, yv, X=NULL, be=NULL, w = rep(1,n),Ttol=10){
 # betahat : vector of estimated parameters of dimension k
 # se      : vector of estimated standard errors of dimension k
 # lk      : log-likelihood value at convergence
+    
+                                        # preliminaries
+    
+        ## Sort data by id ###
+        input_data = cbind(id,yv,X)
+        sorted_data = input_data[order(input_data[,1],decreasing=FALSE),]
+        
+        id = sorted_data[,1]
+        yv = sorted_data[,2]
+        X = sorted_data[,-(1:2)]
+        #######################
 
-# preliminaries
+    
 	pid = id
 	r = length(pid)
 	label = unique(pid)

@@ -12,6 +12,16 @@ cquad_pseudo <-
                                         # lk      : log-likelihood value at convergence
         
                                         # preliminaries
+        
+        ## Sort data by id ###
+        input_data = cbind(id,yv,X)
+        sorted_data = input_data[order(input_data[,1],decreasing=FALSE),]
+        
+        id = sorted_data[,1]
+        yv = sorted_data[,2]
+        X = sorted_data[,-(1:2)]
+        #######################
+
 	pid = id
 	r = length(pid)
 	label = unique(pid)
