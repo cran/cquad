@@ -1,9 +1,9 @@
 quasi_sym_pseudo <- function(eta,qi,s,y0=NULL){
     
-                                        # Compute quasi-symmetric function and its derivatives for given parameters eta
-                                        # and total equal to s
-                                        # if dyn then the last element of is gamma, in this case y0 must be precised
-                                        # preliminaries
+    # Compute quasi-symmetric function and its derivatives for given parameters eta
+    # and total equal to s
+    # if dyn then the last element of is gamma, in this case y0 must be precised
+    # preliminaries
     TT = length(eta)
     
     ga = eta[TT]
@@ -12,7 +12,7 @@ quasi_sym_pseudo <- function(eta,qi,s,y0=NULL){
     TT = TT-1
     uT1 = c(rep(0,TT),1)
     
-                                        # initialization
+    # initialization
     g0 = c(exp(nu[1]*y0),0)
     g1 = c(0,exp(eta[1]+y0*(ga + nu[1])))
     
@@ -40,13 +40,13 @@ quasi_sym_pseudo <- function(eta,qi,s,y0=NULL){
                  E00 = E0; E10 = E1
                  F00 = F0; F10 = F1
                  
-                                        # function g
+                 # function g
                  g0 = c(g00+g10*(exp(nu[t])),0)
                  g1 = c(0,g00*exp(eta[t])+g10*exp(eta[t]+ga+nu[t]))
                  
-                                        # first derivative
-                  E0 = cbind(E00+E10*exp(nu[t]),0)
-                  E0[TT+1,-(t+1)] = E0[TT+1,-(t+1)] + g10*exp(nu[t])*(qi[t]) 
+                 # first derivative
+                 E0 = cbind(E00+E10*exp(nu[t]),0)
+                 E0[TT+1,-(t+1)] = E0[TT+1,-(t+1)] + g10*exp(nu[t])*(qi[t]) 
               
                  
                  F0 = array(0,c(TT+1,TT+1,t+1))
@@ -94,13 +94,12 @@ quasi_sym_pseudo <- function(eta,qi,s,y0=NULL){
               
               
               
-                                        # second derivative
+                 # second derivative
           }
              
     
     
-                                        # output
-    
+    # output
     f = g0+g1; f = f[s+1]
     D1 = E0+E1; d1 = D1[,s+1]
     D2 = F0+F1; D2 = D2[,,s+1]

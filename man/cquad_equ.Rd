@@ -5,7 +5,7 @@
 
 \title{Conditional maximum likelihood estimation for the modified version of the quadratic exponential model (to test for state dependence)}
 
-\description{Fit by conditional maximum likelihood a modified version of the model for binary logitudinal data proposed by Bartolucci & Nigro (2010), in which the interaction terms have an extended form. This modified version is used to test for state dependence as described in Bartolucci et al. (2018).}
+\description{Fit by conditional maximum likelihood a modified version of the model for binary longitudinal data proposed by Bartolucci & Nigro (2010), in which the interaction terms have an extended form. This modified version is used to test for state dependence as described in Bartolucci et al. (2018).}
 
 \usage{cquad_equ(id, yv, X = NULL, be = NULL, w = rep(1, n), Ttol=10)}
 %- maybe also 'usage' for other objects documented here.
@@ -14,9 +14,9 @@
   \item{id}{list of the reference unit of each observation}
   \item{yv}{corresponding vector of response variables}
   \item{X}{corresponding matrix of covariates (optional)}
-  \item{be}{intial vector of parameters (optional)}
+  \item{be}{initial vector of parameters (optional)}
   \item{w}{vector of weights (optional)}
-  \item{Ttol}{Treshold individual observations that activates the recursive algorithm (default=10)}
+  \item{Ttol}{Threshold individual observations that activates the recursive algorithm (default=10)}
 }
 
 \value{

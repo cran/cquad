@@ -1,9 +1,10 @@
 exportPattern("^[[:alpha:]]+")
 
-# Imported function
+# Imported packages/function
 import("stats")
 import("MASS")
 import("plm")
+importFrom("Formula", "Formula")
 
 # S3methods
 S3method(print, cquad)

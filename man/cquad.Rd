@@ -12,13 +12,13 @@
 %- maybe also 'usage' for other objects documented here.
 
 \arguments{
-  \item{formula}{formula with the same sintax as in plm package}
+  \item{formula}{formula with the same syntax as in plm package}
   \item{data}{data.frame or pdata.frame}
   \item{index}{to denote panel structure as in plm package}
   \item{model}{type of model = "basic", "equal", "extended", "pseudo"}
   \item{w}{vector of weights (optional)}
   \item{dyn}{TRUE if in the dynamic version; FALSE for the static version (by default)}
-  \item{Ttol}{Treshold individual observations that activates the recursive algorithm (default=10)}
+  \item{Ttol}{Threshold individual observations that activates the recursive algorithm (default=10)}
 }
 
 \value{

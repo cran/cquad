@@ -3,7 +3,7 @@ function(id,al,X=NULL,eta,dyn=FALSE){
 	
 # simulate data from the static/dynamic logit model given a vector of ordered indices id,
 # a vector of individual effects al of dimension n, a matrix of covariates X,
-# and a vector of parameters eta including the parameter for state depedence
+# and a vector of parameters eta including the parameter for state dependence
 # dyn = TRUE to simulate from the dynamic logit model, case in which the first observation
 # is simulated from the model with state dependence parameter 0
 
@@ -12,9 +12,9 @@ function(id,al,X=NULL,eta,dyn=FALSE){
 	if(is.null(X)) nc = 0 
 	else if(is.vector(X)){nc = 1; X = as.vector(X)} else nc = ncol(X)
 	if(dyn){
-		if(nc!=length(eta)-1) stop("size of eta non-conform with that of X")
+		if(nc!=length(eta)-1) stop("size of eta non-conforms with that of X")
 	}else{
-		if(nc!=(length(eta))) stop("size of eta non-conform with that of X")		
+		if(nc!=(length(eta))) stop("size of eta non-conforms with that of X")		
 	}
 # simulate data
 	yv = pv = rep(0,nt)

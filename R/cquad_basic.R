@@ -28,7 +28,7 @@ cquad_basic <-
         #######################
 
         
-        pid = id
+  pid = id
 	r = length(pid)
 	label = unique(pid)
 	n = length(label)
@@ -36,7 +36,7 @@ cquad_basic <-
 	if(is.null(X)) k=0 else{X = as.matrix(X); k = ncol(X)}
 	c = max(yv)+1 # number of categories
 	if(k>0) Xv = X
-                                        # chech variabiliy of the covariates
+  # check variability of the covariates
 	if(k>0) for(j in 1:k){
                     xj = X[,j]
                     flag = TRUE
@@ -46,16 +46,16 @@ cquad_basic <-
                     }
                     if(flag) stop("at least one covariate without variability within unit")
                 }
-                                        # variable names	
+  # variable names	
 	varnames = NULL
 	if(k>0){
             if(is.null(colnames(X))) for(j in 1:k) varnames = c(varnames,paste("X",j)) 
             else varnames = colnames(X)
 	}
 	if(dyn) varnames = c(varnames,"y_lag")
-                                        #  starting values
+  #  starting values
 	if(dyn)  be = rep(0,k+1) else  be = rep(0,k)
-                                        # check for balanced data
+  # check for balanced data
 	Tv = rep(0,n)
 	ind = id
 	for(i in 1:n) Tv[i] = sum(ind==label[i])
@@ -70,7 +70,7 @@ cquad_basic <-
             if(!largeT){ ZZ = sq(TT); sZZ = rowSums(ZZ)}
         }
         if(balanced) cat("Balanced panel data\n") else cat("Unbalanced panel data\n") 
-                                        # iterate until convergence    
+  # iterate until convergence    
 	Sc = matrix(0,n,1)
 	it = 0; lk = -Inf; lk0 = -Inf
 	if(dyn) zero1 = c(rep(0,k),1)
@@ -172,7 +172,7 @@ cquad_basic <-
    	rownames(J) = colnames(J) = varnames
    	names(se) = varnames   	
    	out = list(formula=formula,lk=lk,coefficients=be,vcov=Va,scv=scv,J=J,se=se,ser=ser,Tv=Tv,call=match.call())
-	class(out) = c("cquad","panelmodel")
+	  class(out) = c("cquad","panelmodel")
    	return(out)
         
     }

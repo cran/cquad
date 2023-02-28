@@ -36,6 +36,8 @@ Bartolucci, F. and Pigini, C. (2017). cquad: An R and Stata package for conditio
 
 Bartolucci, F., Nigro, V., & Pigini, C. (2018). Testing for state dependence in binary panel data with individual covariates by a modified quadratic exponential model. \emph{Econometric Reviews}, \bold{37(1)}, 61-88.
 
+Bartolucci, F., Valentini. F., & Pigini, C. (2021), Recursive Computation of the Conditional Probability Function of the Quadratic Exponential Model for Binary Panel Data, \emph{Computational Economics}, https://doi.org/10.1007/s10614-021-10218-2.
+
 Cox, D. R. (1972), The Analysis of multivariate binary data, \emph{Applied Statistics}, \bold{21}, 113-120.
 }
 

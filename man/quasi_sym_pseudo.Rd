@@ -3,7 +3,7 @@
 \alias{quasi_sym_pseudo}
 %- Also NEED an '\alias' for EACH other topic documented here.
 
-\title{Resursive computation of pseudo conditional maximum likelihood
+\title{Recursive computation of pseudo conditional maximum likelihood
 method proposed by Bartolucci & Nigro (2012).}
 
 \description{Recursively compute the denominator of the individual
@@ -40,6 +40,7 @@ Bartolucci, F. and Nigro, V. (2012), Pseudo conditional maximum
 likelihood estimation of the dynamic logit model for binary panel data,
 \emph{Journal of Econometrics}, \bold{170}, 102-116.
 
+Bartolucci, F., Valentini. F., & Pigini, C. (2021), Recursive Computation of the Conditional Probability Function of the Quadratic Exponential Model for Binary Panel Data, \emph{Computational Economics}, https://doi.org/10.1007/s10614-021-10218-2.
 
 Krailo, M. D., & Pike, M. C. (1984). Algorithm AS 196: conditional multivariate logistic analysis of stratified case-control studies, \emph{Journal of the Royal Statistical Society. Series C (Applied Statistics)}, \bold{33(1)}, 95-103.
 }

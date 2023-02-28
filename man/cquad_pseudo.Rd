@@ -5,7 +5,7 @@
 
 \title{Pseudo conditional maximum likelihood estimation of the dynamic logit model}
 
-\description{Estimate the dynamic logit model for binary logitudinal data by the pseudo conditional maximum likelihood method proposed by Bartolucci & Nigro (2012).}
+\description{Estimate the dynamic logit model for binary longitudinal data by the pseudo conditional maximum likelihood method proposed by Bartolucci & Nigro (2012).}
 
 \usage{
 cquad_pseudo(id, yv, X = NULL, be = NULL, w = rep(1,n), Ttol=10)
@@ -16,9 +16,9 @@ cquad_pseudo(id, yv, X = NULL, be = NULL, w = rep(1,n), Ttol=10)
   \item{id}{list of the reference unit of each observation}
   \item{yv}{corresponding vector of response variables}
   \item{X}{corresponding matrix of covariates (optional)}
-  \item{be}{intial vector of parameters (optional)}
+  \item{be}{initial vector of parameters (optional)}
   \item{w}{vector of weights (optional)}
-  \item{Ttol}{Treshold individual observations that activates the recursive algorithm (default=10)}
+  \item{Ttol}{Threshold individual observations that activates the recursive algorithm (default=10)}
 }
 
 

@@ -5,7 +5,7 @@
 
 \title{Conditional maximum likelihood estimation of the basic quadratic exponential model}
 
-\description{Fit by conditional maximum likelihood a simplified version of the model for binary logitudinal data proposed by Bartolucci & Nigro (2010); see also Cox (1972).}
+\description{Fit by conditional maximum likelihood a simplified version of the model for binary longitudinal data proposed by Bartolucci & Nigro (2010); see also Cox (1972).}
 
 \usage{cquad_basic(id, yv, X = NULL, be = NULL, w = rep(1, n), dyn =
 FALSE, Ttol=10)}
@@ -15,10 +15,10 @@ FALSE, Ttol=10)}
   \item{id}{list of the reference unit of each observation}
   \item{yv}{corresponding vector of response variables}
   \item{X}{corresponding matrix of covariates (optional)}
-  \item{be}{intial vector of parameters (optional)}
+  \item{be}{initial vector of parameters (optional)}
   \item{w}{vector of weights (optional)}
   \item{dyn}{TRUE if in the dynamic version; FALSE for the static version (by default)}
-    \item{Ttol}{Treshold individual observations that activates the recursive algorithm (default=10)}
+    \item{Ttol}{Threshold individual observations that activates the recursive algorithm (default=10)}
 }
 
 \value{

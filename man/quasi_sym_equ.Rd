@@ -3,7 +3,7 @@
 \alias{quasi_sym_equ}
 %- Also NEED an '\alias' for EACH other topic documented here.
 
-\title{Resursive computation of the conditional likelihood for the Modified
+\title{Recursive computation of the conditional likelihood for the Modified
   Quadratic Exponential Model proposed in Bartolucci et al. (2018)}
 
 \description{Recursively compute the denominator of the individual
@@ -35,6 +35,8 @@ quasi_sym_equ(eta,s,y0=NULL)
 Bartolucci, F. and Nigro, V. (2010), A dynamic model for binary panel data with unobserved heterogeneity admitting a root-n consistent conditional estimator, \emph{Econometrica}, \bold{78}, 719-733.
 
 Bartolucci, F., Nigro, V., & Pigini, C. (2018). Testing for state dependence in binary panel data with individual covariates by a modified quadratic exponential model. \emph{Econometric Reviews}, \bold{37(1)}, 61-88.
+
+Bartolucci, F., Valentini. F., & Pigini, C. (2021), Recursive Computation of the Conditional Probability Function of the Quadratic Exponential Model for Binary Panel Data, \emph{Computational Economics}, https://doi.org/10.1007/s10614-021-10218-2.
 
 Krailo, M. D., & Pike, M. C. (1984). Algorithm AS 196: conditional multivariate logistic analysis of stratified case-control studies, \emph{Journal of the Royal Statistical Society. Series C (Applied Statistics)}, \bold{33(1)}, 95-103.
 }

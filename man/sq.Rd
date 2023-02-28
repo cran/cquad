@@ -16,7 +16,7 @@
 }
 
 \value{
-	\item{M}{Matrix of byary configurations}
+	\item{M}{Matrix of binary configurations}
 }
 
 \author{
